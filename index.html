@@ -138,7 +138,7 @@
       if (ms < 150) return "⚡ Insane!";
       if (ms < 250) return "🔥 Fast!";
       if (ms < 400) return "👍 Average";
-      return "😴 You're slow!";
+      return "😴 You're slow! Try again if you got balls 😈";
     }
 
     function showLeaderboard() {
@@ -162,14 +162,14 @@
     });
 
     document.body.addEventListener("click", () => {
-      if (!startTime) return;
+      if (!startTime) return; // Prevent clicking too early
 
       // If clicked before the green light, show the 'Too Soon' message
       if (!clickable) {
         status.textContent = "Too soon! Wait for green!";
         status.classList.add("too-soon");
         rankDisplay.textContent = "";
-        startTime = null;
+        startTime = null; // Prevent further interaction until reset
         updateLights('');
         return;
       }
@@ -184,7 +184,7 @@
       localStorage.setItem("reactionLeaderboard", JSON.stringify(leaderboard));
 
       status.textContent = `Your time: ${reaction}ms`;
-      rankDisplay.textContent = reaction >= 1000 ? "😴 You're slow!" : getRank(reaction);
+      rankDisplay.textContent = reaction >= 1000 ? "😴 You're slow! Try again if you got balls 😈" : getRank(reaction);
       updateLights('');
       showLeaderboard();
       startTime = null;
